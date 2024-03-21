@@ -1,0 +1,29 @@
+server:
+  port: 8080
+  shutdown: graceful
+spring:
+  applicattion:
+    name: collabhouse
+  config:
+    activate:
+      on-profile: default
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5432/collabhouse
+    username: admin
+    password: mysecretpassword
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format-sql: true
+    show-sql: false
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://accounts.google.com
+          jwk-set-uri: https://www.googleapis.com/oauth2/v3/certs
+          audience: 202130843966-uvceemq8h1b1pju94vh6r9s2c9bavhh9.apps.googleusercontent.com
